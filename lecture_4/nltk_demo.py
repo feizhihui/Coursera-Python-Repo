@@ -1,5 +1,11 @@
 # encoding: utf-8
-
+"""
+NLTK包括获取语料库、字符串处理、搭配发现、词性标注、机器学习、分块解析、语义解释、指标评测、概率与估计等多项语言任务，
+在处理时非常方便，例如要载入并去掉停用词可用类似如下几行简单代码就可以完成
+from nltk.corpus import stopwords
+stopwords = stopwords.words('english')
+… if words not in stopwords…
+"""
 from nltk.corpus import gutenberg, stopwords
 from nltk.probability import *
 
@@ -30,3 +36,14 @@ books = PlaintextCorpusReader(corpus_root, '.*')  # 文件名可用正则表达�
 print(books.fileids())
 print(books.words())
 print(books.raw('2.txt'))
+
+import nltk
+from nltk.corpus import brown
+
+cfd = nltk.ConditionalFreqDist((genre, word)
+                               for genre in brown.categories()
+                               for word in brown.words(categories=genre))
+genres = ['news', 'romance']
+modals = ['can', 'could', 'may', 'might', 'must', 'will', 'would']
+cfd.tabulate(conditions=genres, samples=modals)
+cfd.plot(conditions=genres, samples=modals)
