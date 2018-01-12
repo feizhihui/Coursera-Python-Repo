@@ -18,7 +18,7 @@ def retrieve_quotes_historical(stock_code):
     quotes = []
     url = 'https://finance.yahoo.com/quote/%s/history?p=%s' % (stock_code, stock_code)
     r = requests.get(url)
-    m = re.findall('"HistoricalPriceStore":{"prices":(.*?),"isPending"', r.text)
+    m = re.findall('"HistoricalPriceStore":{"prices":(.*?),"isPending"', r.text)  # 提取括号内正则内容
     if m:
         quotes = json.loads(m[0])
         quotes = quotes[::-1]
