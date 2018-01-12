@@ -49,3 +49,5 @@ plt.subplot(211)
 plt.plot(open1.index, open1.values, color='r', marker='o')
 plt.subplot(212)
 plt.plot(open1.index, open2.values, color='green', marker='o')
+
+plt.show()
