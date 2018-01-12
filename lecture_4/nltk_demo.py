@@ -19,4 +19,14 @@ fd2.plot(20)
 fd2.plot(20, cumulative=True)
 
 print(len(stopwords.words()), type(stopwords.words()))
-print(stopwords.words())  # default fileids='english'
+print(stopwords.words(fileids='english'))  # default fileids='english'
+
+# 载入本地语料库
+
+from nltk.corpus import PlaintextCorpusReader
+
+corpus_root = r'd:\data'
+books = PlaintextCorpusReader(corpus_root, '.*')  # 文件名可用正则表达式
+print(books.fileids())
+print(books.words())
+print(books.raw('2.txt'))
