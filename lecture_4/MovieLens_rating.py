@@ -11,7 +11,8 @@ print(data.head())
 
 data = pd.merge(user, data, on='user_id')
 print(data.head())
-rating = data.groupby(by='user_id').rating.mean()
-print(rating.head())
-user = pd.concat([user, rating])
-print(user.head())
+
+data = data.groupby(by='user_id').agg({'rating': 'mean', 'gender': 'all'})
+print(data.head())
+data = data.groupby(by='gender').agg({'rating': 'std'})
+print(data)
